@@ -3,6 +3,9 @@ var natureOfCode = natureOfCode || {};
 
 natureOfCode.BouncingBallWithNoVectors = function (canvas) {
     "use strict";
+
+    canvas = natureOfCode.extendCanvas(canvas);
+
     var x = 0,
         y = 0,
         width = 800,
@@ -14,21 +17,14 @@ natureOfCode.BouncingBallWithNoVectors = function (canvas) {
         refreshRate = 40,
         backgroundColor = '#eeeeee',
 
-        clear = function () {
-            var context = canvas.getContext('2d');
-            context.clearRect(0, 0, width, height);
-            context.fillStyle   = backgroundColor;
-            context.fillRect(0, 0, width, height);
-        },
-
         setup = function () {
             canvas.width = width;
             canvas.height = height;
-            clear(canvas);
+            canvas.clear(canvas);
         },
 
         draw = function () {
-            clear(canvas);
+            canvas.clear(backgroundColor);
 
             x = x + xspeed;
             y = y + yspeed;
@@ -41,13 +37,7 @@ natureOfCode.BouncingBallWithNoVectors = function (canvas) {
                 yspeed = yspeed * -1;
             }
 
-
-            var context = canvas.getContext('2d');
-
-            context.beginPath();
-            context.arc(x, y, ballRadius, 0, 2 * Math.PI, false);
-            context.fillStyle = ballColor;
-            context.fill();
+            canvas.drawBall(x, y, ballRadius, ballColor);
 
             setTimeout(draw, refreshRate);
         },

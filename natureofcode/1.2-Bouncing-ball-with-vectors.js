@@ -3,6 +3,8 @@ var natureOfCode = natureOfCode || {};
 
 natureOfCode.BouncingBallWithVectors = function (canvas) {
     "use strict";
+    canvas = natureOfCode.extendCanvas(canvas);
+
     var location  = new natureOfCode.Vector2D(0, 0),
         velocity = new natureOfCode.Vector2D(1, 3.3),
         width = 800,
@@ -13,21 +15,8 @@ natureOfCode.BouncingBallWithVectors = function (canvas) {
         refreshRate = 40,
         backgroundColor = '#eeeeee',
 
-        clear = function () {
-            var context = canvas.getContext('2d');
-            context.clearRect(0, 0, width, height);
-            context.fillStyle   = backgroundColor;
-            context.fillRect(0, 0, width, height);
-        },
-
-        setup = function () {
-            canvas.width = width;
-            canvas.height = height;
-            clear(canvas);
-        },
-
         draw = function () {
-            clear(canvas);
+            canvas.clear(backgroundColor);
 
             location = location.addVector(velocity);
 
@@ -38,15 +27,15 @@ natureOfCode.BouncingBallWithVectors = function (canvas) {
                 velocity.y = velocity.y * -1;
             }
 
-
-            var context = canvas.getContext('2d');
-
-            context.beginPath();
-            context.arc(location.x, location.y, ballRadius, 0, 2 * Math.PI, false);
-            context.fillStyle = ballColor;
-            context.fill();
+            canvas.drawBall(location.x, location.y, ballRadius, ballColor);
 
             setTimeout(draw, refreshRate);
+        },
+
+        setup = function () {
+            canvas.width = width;
+            canvas.height = height;
+            canvas.clear(backgroundColor);
         },
 
         run = function () {
