@@ -14,8 +14,27 @@ natureOfCode.Vector2D.prototype = (function () {
         },
         addScalar = function (scalar) {
             return new natureOfCode.Vector2D(this.x + scalar, this.y + scalar);
-        };
-
+        },
+        substractVector = function (otherVector) {
+            return new natureOfCode.Vector2D(this.x - otherVector.x, this.y - otherVector.y);
+        },
+        substractScalar = function (scalar) {
+            return new natureOfCode.Vector2D(this.x - scalar, this.y - scalar);
+        },
+        multiply = function (scalar) {
+            return new natureOfCode.Vector2D(this.x * scalar, this.y * scalar);
+        },
+        divide = function (scalar) {
+            return new natureOfCode.Vector2D(this.x / scalar, this.y / scalar);
+        },
+        magnitude = function(){
+            return Math.sqrt( this.x * this.x + this.y * this.y);
+        },
+        normalize = function(){
+            var unit = this.divide(this.magnitude);
+            this.x = unit.x;
+            this.y = unit.y;
+        }
     return {
         addVector: addVector,
         addScalar: addScalar
