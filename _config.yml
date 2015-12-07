@@ -1,0 +1,12 @@
+# Site settings
+title: Developer log 
+#email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Where I write about the things I learn and the hurdles I encounter.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "stralsi.github.io" # the base hostname & protocol for your site
+twitter_username: strawleechook 
+github_username:  stralsi
+
+# Build settings
+markdown: kramdown
